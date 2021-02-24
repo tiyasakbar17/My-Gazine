@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mygazine
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  backend:
+    env_file: "./server/server.env"
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    image: "tiyasakbar/backend"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: "tiyasakbar/frontend"
+    ports:
+      - "3000:3000"
