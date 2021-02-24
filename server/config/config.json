@@ -14,9 +14,10 @@
 		"dialect": "mysql"
 	},
 	"production": {
-		"use_env_variable": "DATABASE_URL",
-		"dialectOptions": { "ssl": { "require": true, "rejectUnauthorized": false } },
-		"dialect": "postgres",
-		"protocol": "postgres"
+		"username": "postgres",
+		"password": "postgres",
+		"database": "news",
+		"host": "db",
+		"dialect": "postgres"
 	}
 }
