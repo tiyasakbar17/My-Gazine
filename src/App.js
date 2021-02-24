@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AddPost from "./pages/AddPost";
 import DetailPost from "./pages/DetailPost";
+import SavedPost from "./pages/SavedPost";
 
 function App() {
 	if (localStorage.getItem("token")) {
@@ -29,6 +30,7 @@ function App() {
 					<Route exact path="/task2" component={LetterCounter} /> {/* Done */}
 					<Route exact path="/post/:id" component={DetailPost} />
 					<UserRouter exact path="/add-post" component={AddPost} />
+					<UserRouter exact path="/saved-post" component={SavedPost} />
 				</Switch>
 			</BrowserRouter>
 		</Provider>

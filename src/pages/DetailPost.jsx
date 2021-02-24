@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { bookmark } from "../redux/actions/Auth";
 import { deletePost, getPost } from "../redux/actions/Posts";
 
-const DetailPost = ({ getPost, Posts: { post, loadingPost, posts }, Auth: { userData, loading }, bookmark, deletePost }) => {
+const DetailPost = ({ getPost, Posts: { post, loadingPost, posts }, Auth: { userData, loading, isLogin }, bookmark, deletePost }) => {
 	const history = useHistory();
 	const params = useParams();
 	const current = posts.findIndex((element) => element.id === parseInt(params.id));
@@ -20,7 +20,7 @@ const DetailPost = ({ getPost, Posts: { post, loadingPost, posts }, Auth: { user
 	const nextArticle = () => {
 		history.push(`/post/${posts[current + 1].id}`);
 	};
-	const bookmarked = post.bookmarks.findIndex((mark) => mark.author_id === userData.id);
+	const bookmarked = isLogin ? post.bookmarks.findIndex((mark) => mark.author_id === userData.id) : null;
 	const saveHandler = () => {
 		bookmark(params.id);
 	};
@@ -41,21 +41,25 @@ const DetailPost = ({ getPost, Posts: { post, loadingPost, posts }, Auth: { user
 				</span>
 			</div>
 			<div className="d-flex flex-row-reverse mb-1">
-				{userData.id === post.author.id ? (
-					<button className="pointer btn btn-danger ml-1" onClick={deleteHandler}>
-						Delete post
-					</button>
+				{isLogin ? (
+					userData.id === post.author.id ? (
+						<button className="pointer btn btn-danger ml-1" onClick={deleteHandler}>
+							Delete post
+						</button>
+					) : null
 				) : null}
-				{!bookmarked ? (
-					<button className="pointer btn btn-danger" onClick={saveHandler}>
-						un-save
-					</button>
-				) : (
-					// <i className="fa fa-bookmark-o"></i>
-					<button className="pointer btn btn-success" onClick={saveHandler}>
-						Save this post
-					</button>
-				)}
+				{isLogin ? (
+					!bookmarked ? (
+						<button className="pointer btn btn-danger" onClick={saveHandler}>
+							un-save
+						</button>
+					) : (
+						// <i className="fa fa-bookmark-o"></i>
+						<button className="pointer btn btn-success" onClick={saveHandler}>
+							Save this post
+						</button>
+					)
+				) : null}
 			</div>
 			<div style={{ width: "100%", height: "30%" }}>
 				<img src={post.image} alt="images" className="image" />

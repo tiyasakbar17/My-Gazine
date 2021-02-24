@@ -31,6 +31,20 @@ export const getPosts = () => async (dispatch) => {
 		dispatch(showPopUp(error.response.data.message));
 	}
 };
+export const getSavedPosts = () => async (dispatch) => {
+	try {
+		dispatch(showLoading());
+		const results = await Axios.get(`${baseUrl}/bookmarks`);
+		dispatch({
+			type: "GET_POSTS",
+			payload: results.data.posts,
+		});
+		dispatch(closeLoading());
+	} catch (error) {
+		dispatch(closeLoading());
+		dispatch(showPopUp(error.response.data.message));
+	}
+};
 export const getPost = (id) => async (dispatch) => {
 	try {
 		dispatch(showLoading());

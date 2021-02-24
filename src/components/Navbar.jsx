@@ -55,19 +55,10 @@ const Navbar = ({
 										Add Post
 									</a>
 								</li>
-								<li className="nav-item dropdown">
-									<a className="nav-link dropdown-toggle pointer" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										User Menu
+								<li className="nav-item">
+									<a className="nav-link pointer " href="/saved-post">
+										Saved Posts
 									</a>
-									<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a className="dropdown-item pointer" href="/task2">
-											Saved Posts
-										</a>
-										<div className="dropdown-divider"></div>
-										<a className="dropdown-item pointer" href="/">
-											My Post
-										</a>
-									</div>
 								</li>
 							</ul>
 						) : (
