@@ -8,16 +8,7 @@ const configJson = {
 		"Content-type": "application/json",
 	},
 };
-const configForm = (dispatch) => ({
-	headers: {
-		"Content-type": "multipart/form-data",
-	},
-	onUploadProgress: (ProgressEvent) => {
-		let percentage = Math.round((ProgressEvent.loaded * 100) / ProgressEvent.total);
-		dispatch(showProgress(percentage));
-	},
-});
-export const baseUrl = "http://localhost:5000/api/v1";
+export const baseUrl = "https://tiyas-my-gazine.herokuapp.com/api/v1";
 
 export const loadData = () => async (dispatch) => {
 	dispatch(showLoading());
