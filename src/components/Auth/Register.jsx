@@ -6,7 +6,7 @@ function Login({ onClick, userRegister, changeShow }) {
 	const innitialValue = {
 		email: "",
 		password: "",
-		fullName: "",
+		name: "",
 	};
 
 	const [state, setState] = React.useState(innitialValue);
@@ -42,7 +42,7 @@ function Login({ onClick, userRegister, changeShow }) {
 							<input type="password" className="form-control" name="password" value={state.password} placeholder="Password" onChange={changeHandler} required />
 						</div>
 						<div className="mb-1">
-							<input type="text" className="form-control" name="fullName" value={state.fullName} placeholder="Full Name" onChange={changeHandler} required />
+							<input type="text" className="form-control" name="name" value={state.name} placeholder="Full Name" onChange={changeHandler} required />
 						</div>
 						<div className="mb-1">
 							<button type="submit" className="btn btn-success">
